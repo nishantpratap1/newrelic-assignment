@@ -1,0 +1,31 @@
+stages:
+  - terraform
+
+variables:
+  AWS_REGION: "us-east-1"
+
+before_script:
+  - echo "Setting up environment..."
+  - apk add --no-cache wget unzip
+  - wget https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip -O terraform.zip
+  - unzip terraform.zip && mv terraform /usr/local/bin/terraform
+  - terraform version
+
+terraform_plan:
+  stage: terraform
+  script:
+    - echo "Initializing Terraform..."
+    - terraform init
+    - echo "Running Terraform Plan..."
+    - terraform plan -refresh=false -out=plan.out
+  artifacts:
+    paths:
+      - plan.out
+    when: always
+  only:
+    - main
+
+
+
+
+
