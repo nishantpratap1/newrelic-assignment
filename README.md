@@ -183,7 +183,7 @@ The EC2 instance uses:
 Clone this repository to your local machine or directly into your GitLab environment.
 
 ```bash
-git clone https://your-repository-url.git
+git clone https://github.com/nishantpratap1/terraform-learning.git
 ```
 
 ### **2. Customize Variables**
